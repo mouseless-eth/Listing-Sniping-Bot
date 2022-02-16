@@ -1,0 +1,23 @@
+{
+  "name": "milklistingbot",
+  "version": "1.0.0",
+  "description": "Bot that checks when $MILK listing is live and tries to buy it",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NME-eth/Milk-Listing.git"
+  },
+  "author": "NME.eth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NME-eth/Milk-Listing/issues"
+  },
+  "homepage": "https://github.com/NME-eth/Milk-Listing#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "ethers": "^5.5.4"
+  }
+}
