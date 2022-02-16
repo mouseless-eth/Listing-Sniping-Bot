@@ -18,7 +18,8 @@ const factoryAbi = [
 ];
 const erc20Abi = [
 	"function approve(address spender, uint256 amount) external returns (bool)",
-  "function allowance(address owner, address spender) external view returns (uint256)"
+  "function allowance(address owner, address spender) external view returns (uint256)",
+  "function balanceOf(address account) external view returns (uint256)"
 ];
 
 let bytecode = milkInfo['bytecode'];
@@ -59,15 +60,21 @@ async function main() {
   const approve_milk_receipt = await approve_milk_promise;
   console.log("approved router to use milk ", approve_milk_receipt.transactionHash);
 
-  console.log(await milkContract.allowance(addresses.impersonate, addresses.router));
-  console.log(await wEthContract.allowance(addresses.impersonate, addresses.router));
-
+  console.log("allowance:", await milkContract.allowance(addresses.impersonate, addresses.router));
+  console.log("allowance:", await wEthContract.allowance(addresses.impersonate, addresses.router));
+  console.log();
+  console.log("weth balance: ", await wEthContract.balanceOf(addresses.impersonate));
+  console.log("milk balance: ", await milkContract.balanceOf(addresses.impersonate));
+  console.log();
+  console.log("ether deposit: ",ethers.utils.parseUnits("200"));
+  console.log("milk deposit: ",ethers.utils.parseUnits("50000"));
+  console.log(ethers.utils.parseUnits("200"));
   const router = new ethers.Contract(addresses.router, routerAbi, signer);
   const add_liquidity_tx = await router.addLiquidity(
     addresses.wETH,
-    milkContract.address,
+    "0x3129D36073374f9F0C4d4667CB34C5b71dE8FA72",
     ethers.utils.parseUnits("200"),
-    ethers.utils.parseUnits("6000000"),
+    ethers.utils.parseUnits("50000"),
     ethers.utils.parseUnits("1"),
     ethers.utils.parseUnits("1"),
     addresses.impersonate,
@@ -77,7 +84,6 @@ async function main() {
   const add_liquidity_promise = await add_liquidity_tx.wait();
   const add_liquidity_receipt = await add_liquidity_promise;
   console.log(add_liquidity_receipt);
-
 }
 
 main();
