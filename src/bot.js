@@ -64,11 +64,11 @@ factory.on('PairCreated', async (token0, token1, pairAddress) => {
   }
 
   // extracting outToken's symbol to check if it equals 'milk'
-  const outTokenContract = new ethers.Contract(outTokenAddr, erc20_abi, provider);
+  const outTokenContract = new ethers.Contract(outTokenAddr, abi['erc20'], provider);
   let outTokenSymbol = await outTokenContract.symbol();
 
   if(outTokenSymbol.toLowerCase() === 'milk') {
-    console.log("Found Milk... Now Waiting Liquidity"); 
+    console.log("Found Milk Contract Addr... Now Waiting For Liquidity To Be Added"); 
     // renaming variables now that we confirm outToken is Milk 
     wEthAddr = inTokenAddr;
     milkAddr = outTokenAddr;
