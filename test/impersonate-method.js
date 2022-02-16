@@ -37,7 +37,7 @@ const MilkContract = new ethers.ContractFactory(abi, bytecode, signer);
 
 async function main() {
   // deploying TEST MILK
-  const milkContract = await MilkContract.deploy(60000000);
+  const milkContract = await MilkContract.deploy(ethers.utils.parseUnits("60000000"));
   console.log("milk deployed to ",milkContract.address);
 
   // creating new pair
