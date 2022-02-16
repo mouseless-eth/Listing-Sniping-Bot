@@ -6,14 +6,25 @@ const addresses = {
   wETH: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
   router: '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff',  
   factory: '0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32', 
-  impersonate: '0x3EDC6fE5e041B9ED01e35CD644b395f6419A2f8a'
+  impersonate: '0x3EDC6fE5e041B9ED01e35CD644b395f6419A2f8a' // random account that we will at on behalf of
 }
+
+const routerAbi = [
+	"function addLiquidity(address tokenA, address tokenB, uint amountADesired, uint amountBDesired, uint amountAMin, uint amountBMin, address to, uint deadline) external returns (uint amountA, uint amountB, uint liquidity)",
+];
+const factoryAbi = [
+	"function createPair(address tokenA, address tokenB) external returns (address pair)",
+	"function getPair(address tokenA, address tokenB) external view returns (address pair)",
+];
+const erc20Abi = [
+	"function approve(address spender, uint256 amount) external returns (bool)",
+  "function allowance(address owner, address spender) external view returns (uint256)"
+];
 
 let bytecode = milkInfo['bytecode'];
 let abi = milkInfo['abi'];
 
 // setting up .env variables
-const MNEMONIC = process.env.MNEMONIC;
 const NODEURL = process.env.NODEURL;
 
 // setting up node provider and account wallet for signing
@@ -23,10 +34,6 @@ const signer = provider.getSigner(addresses.impersonate);
 
 const MilkContract = new ethers.ContractFactory(abi, bytecode, signer);
 
-const factoryAbi = [
-	"function createPair(address tokenA, address tokenB) external returns (address pair)",
-];
-
 async function main() {
   // deploying TEST MILK
   const milkContract = await MilkContract.deploy(60000000);
@@ -35,9 +42,41 @@ async function main() {
   // creating new pair
 	const factory = new ethers.Contract(addresses.factory, factoryAbi, signer);
 
-  const tx = await factory.createPair(addresses.wETH, milkContract.address);
-  const receipt = tx.wait();
-  console.log(receipt);
+  const make_pair_tx = await factory.createPair(addresses.wETH, milkContract.address);
+  const make_pair_promise = make_pair_tx.wait();
+  const make_pair_receipt = await make_pair_promise;
+  console.log("new milk + weth pair created - tx:", make_pair_receipt.transactionHash);
+
+  // adding liquidity to new pair
+	const wEthContract = new ethers.Contract(addresses.wETH, erc20Abi, signer);
+  const approve_weth_tx = await wEthContract.approve(addresses.router, "115792089237316195423570985008687907853269984665640564039457584007913129639935");
+  const approve_weth_promise = approve_weth_tx.wait();
+  const approve_weth_receipt = await approve_weth_promise;
+  console.log("approved router to use weth - tx:", approve_weth_receipt.transactionHash);
+
+  const approve_milk_tx = await milkContract.approve(addresses.router, "115792089237316195423570985008687907853269984665640564039457584007913129639935");
+  const approve_milk_promise = approve_milk_tx.wait();
+  const approve_milk_receipt = await approve_milk_promise;
+  console.log("approved router to use milk ", approve_milk_receipt.transactionHash);
+
+  console.log(await milkContract.allowance(addresses.impersonate, addresses.router));
+  console.log(await wEthContract.allowance(addresses.impersonate, addresses.router));
+
+  const router = new ethers.Contract(addresses.router, routerAbi, signer);
+  const add_liquidity_tx = await router.addLiquidity(
+    addresses.wETH,
+    milkContract.address,
+    ethers.utils.parseUnits("200"),
+    ethers.utils.parseUnits("6000000"),
+    ethers.utils.parseUnits("1"),
+    ethers.utils.parseUnits("1"),
+    addresses.impersonate,
+    Date.now() + 1000 * 60 * 1,
+  );
+
+  const add_liquidity_promise = await add_liquidity_tx.wait();
+  const add_liquidity_receipt = await add_liquidity_promise;
+  console.log(add_liquidity_receipt);
 
 }
 
