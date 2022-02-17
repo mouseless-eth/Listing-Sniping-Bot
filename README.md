@@ -24,7 +24,7 @@ This project uses [dotenv](https://github.com/motdotla/dotenv#readme) to handle 
 - `NODE_URL` **http url** of the node that the bot will connect to
 - `ROUTER_ADDR` dex router address
 - `FACTORY_ADDR` dex factory address
-- `TOKEN_IN_ADDR` address of token we are sending to router (**token we are selling/swapping** e.g. weth/matic/dai)
+- `TOKEN_IN_ADDR` address of token we are sending to router (e.g eth/matic/dai)
 - `TOKEN_OUT_NAME` **name of the token that we want to snipe**
 - `SELL_AMT` amount of token that we want to send to router (amount of token_in to swap)
 - `MIN_LIQUIDITY` the minimum amount of liquidity the pool needs for a trade to be executed
@@ -37,9 +37,9 @@ NODE_URL=<node-provider-url-here>
 ROUTER_ADDR=0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D // uni router
 FACTORY_ADDR=0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f // uni factory
 TOKEN_IN_ADDR=0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 // weth addr
-TOKEN_OUT_NAME=<name-of-token-to-buy>
-BUY_AMT=10
-MIN_LIQUIDITY=100
+TOKEN_OUT_NAME=<name-of-token-to-snipe>
+BUY_AMT=10 // swap 10weth for the token we want to snipe
+MIN_LIQUIDITY=100 // pool needs atleast 100 weth for bot to make trade
 IMPERSONATE=0xE78388b4CE79068e89Bf8aA7f218eF6b9AB0e9d0 // avax bridge used for testing purposes to send weth
 ```
 >it makes most sense to use a highly liquid token such as weth/matic/dai/... for the `TOKEN_IN_ADDR` so that we won't be hit as hard by slippage
