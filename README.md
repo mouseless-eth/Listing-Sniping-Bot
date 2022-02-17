@@ -19,17 +19,16 @@ cd Listing-Sniping-Bot
 npm install
 ```
 ### Setup & Config
-This project uses [dotenv](https://github.com/motdotla/dotenv#readme) to handle all config variables.
-To set it up, create a `.env` file in the **project home directory** and edit it to include descriptions for the following variables 
-- `MNEMONIC` 12 word wallet mnemonic phrase
-- `NODE_URL` http url of the node we will connect to 
+This project uses [dotenv](https://github.com/motdotla/dotenv#readme) to handle all config variables. To set it up, create a `.env` file in the **project home directory** and edit it to include descriptions for the following variables:
+- `MNEMONIC` 12 word mnemonic phrase for a HDWallet
+- `NODE_URL` **http url** of the node that the bot will connect to
 - `ROUTER_ADDR` dex router address
 - `FACTORY_ADDR` dex factory address
-- `TOKEN_IN_ADDR` address of token we are sending to router (token we are selling e.g. weth/matic/dai)
+- `TOKEN_IN_ADDR` address of token we are sending to router (**token we are selling/swapping** e.g. weth/matic/dai)
 - `TOKEN_OUT_NAME` **name of the token that we want to snipe**
-- `SELL_AMT` amount of token that we want to send to router 
+- `SELL_AMT` amount of token that we want to send to router (amount of token_in to swap)
 - `MIN_LIQUIDITY` the minimum amount of liquidity the pool needs for a trade to be executed
-- `IMPERSONATE` whale address used for testing to create liquidity pools
+- `IMPERSONATE` whale address used for testing to create initial liquidity pool
 
 an example of a `.env` config file 
 ```
@@ -41,12 +40,13 @@ TOKEN_IN_ADDR=0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 // weth addr
 TOKEN_OUT_NAME=<name-of-token-to-buy>
 BUY_AMT=10
 MIN_LIQUIDITY=100
-IMPERSONATE=0xE78388b4CE79068e89Bf8aA7f218eF6b9AB0e9d0 // avax bridge used for testing to send weth
+IMPERSONATE=0xE78388b4CE79068e89Bf8aA7f218eF6b9AB0e9d0 // avax bridge used for testing purposes to send weth
 ```
 >it makes most sense to use a highly liquid token such as weth/matic/dai/... for the `TOKEN_IN_ADDR` so that we won't be hit as hard by slippage
 
 >`MIN_LIQUIDITY` stops the bot from buying fake tokens with the same name as the token we are trying to snipe. Should be pretty high e.g. 200eth
 
+### Running 
 Once the `.env` file is set up, the bot can be run by calling the following command from the project home directory.
 ```
 node src/bot.js
