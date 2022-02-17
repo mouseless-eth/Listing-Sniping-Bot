@@ -18,6 +18,7 @@
   "homepage": "https://github.com/NME-eth/Milk-Listing#readme",
   "dependencies": {
     "dotenv": "^16.0.0",
-    "ethers": "^5.5.4"
+    "ethers": "^5.5.4",
+    "node": "^17.4.0"
   }
 }
