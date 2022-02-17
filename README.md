@@ -1,7 +1,7 @@
 # Listing Sniping Bot
-When new tokens gets listed on a **DEX**, bots are able to detect this event and can use this to be one of the first to buy the newly listed token at a **very low price.**
+When new tokens gets listed on a DEX, bots are able to detect the **contract event emmited** and can use this to their advantage by being one of the first to buy the newly listed token at a **very low price.**
 
-This repo explores this idea by showing an implementation of a bot snipes specific tokens as soon as they are listed. This bot works under the assumption that **the name of the token that we snipe is known before launch.**
+This repo explores this idea by showing an implementation of a bot snipes **specific** tokens as soon as they are listed. This bot works under the assumption that **the name of the token to snipe is known before its launch.**
 
 ## Technolody Stack & Tools
 - Javascript (bot script & testing)
@@ -10,7 +10,7 @@ This repo explores this idea by showing an implementation of a bot snipes specif
 - [Ganache-cli](https://github.com/trufflesuite/ganache-cli-archive) (personal local blockchain simulator)
 - [Ethernal](https://doc.tryethernal.com/) (local blockchain explorer [optional])
 
-## How To Run
+## How To Run The Bot
 ### Installation
 To install this repo and all its dependencies run
 ```
@@ -18,7 +18,7 @@ git clone https://github.com/NME-eth/Listing-Sniping-Bot
 cd Listing-Sniping-Bot
 npm install
 ```
-### Setup + Config
+### Setup & Config
 Create a `.env` config file in the project home with the following variables 
 - `MNEMONIC` 12 word wallet mnemonic phrase
 - `NODE_URL` http url of the node we will connect to 
@@ -45,6 +45,11 @@ IMPERSONATE=0xE78388b4CE79068e89Bf8aA7f218eF6b9AB0e9d0 // avax bridge used for t
 >it makes most sense to use a highly liquid token such as weth/matic/dai/... for the `TOKEN_IN_ADDR` so that we won't be hit as hard by slippage
 
 >`MIN_LIQUIDITY` stops the bot from buying fake tokens with the same name as the token we are trying to snipe. Should be pretty high e.g. 200eth
+
+Once the `.env` file is set up, the bot can be run by calling the following command from the project home directory.
+```
+node src/bot.js
+```
 
 ## Testing
 The test will be made using a real life token launch example. The 
