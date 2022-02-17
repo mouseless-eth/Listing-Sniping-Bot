@@ -1,5 +1,7 @@
 # Listing Sniping Bot
-When new tokens gets listed on a **DEX**, bots are able to detect this and be one of the first to buy the token at a very low price. This repo explores this idea by showing an implementation of such bot. 
+When new tokens gets listed on a **DEX**, bots are able to detect this and be one of the first to buy the token at a very low price. 
+
+This repo explores this idea by showing an implementation of a bot snipes specific tokens as soon as they are listed. This bot works under the assumption that *the name of the token that we snipe is known before launch.*
 
 ## Technolody Stack & Tools
 - Javascript (bot script & testing)
@@ -8,13 +10,15 @@ When new tokens gets listed on a **DEX**, bots are able to detect this and be on
 - [Ganache-cli](https://github.com/trufflesuite/ganache-cli-archive) (personal local blockchain simulator)
 - [Ethernal](https://doc.tryethernal.com/) (local blockchain explorer [optional])
 
-## Set up
+## How To Run
+### Installation
 To install this repo and all its dependencies run
 ```
 git clone https://github.com/NME-eth/Listing-Sniping-Bot
 cd Listing-Sniping-Bot
 npm install
 ```
+### Setup + Config
 Create a `.env` config file in the project home with the following variables 
 - `MNEMONIC` 12 word wallet mnemonic phrase
 - `NODE_URL` http url of the node we will connect to 
