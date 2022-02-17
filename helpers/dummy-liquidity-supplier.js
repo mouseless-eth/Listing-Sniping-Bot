@@ -2,12 +2,22 @@ const ethers = require('ethers');
 const milkInfo = require('./MILK.json');
 require('dotenv').config();
 
+// setting up .env variables
+const NODEURL = process.env.NODEURL;
+const IMPERSONATE = process.env.IMPERSONATE_0;
+
 const addresses = {
   wETH: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
   router: '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff',  
   factory: '0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32', 
-  impersonate: '0x3EDC6fE5e041B9ED01e35CD644b395f6419A2f8a' // random account that we will at on behalf of
+  impersonate: IMPERSONATE // random account that we will at on behalf of
 }
+
+// setting up node provider and account wallet for signing
+const provider = new ethers.providers.JsonRpcProvider(NODEURL);
+// setting up the account we want to impersonate
+const signer = provider.getSigner(addresses.impersonate);
+
 
 const routerAbi = [
 	"function addLiquidity(address tokenA, address tokenB, uint amountADesired, uint amountBDesired, uint amountAMin, uint amountBMin, address to, uint deadline) external returns (uint amountA, uint amountB, uint liquidity)",
@@ -24,14 +34,6 @@ const erc20Abi = [
 
 let bytecode = milkInfo['bytecode'];
 let abi = milkInfo['abi'];
-
-// setting up .env variables
-const NODEURL = process.env.NODEURL;
-
-// setting up node provider and account wallet for signing
-const provider = new ethers.providers.JsonRpcProvider(NODEURL);
-// setting up the account we want to impersonate
-const signer = provider.getSigner(addresses.impersonate);
 
 const MilkContract = new ethers.ContractFactory(abi, bytecode, signer);
 
@@ -68,13 +70,12 @@ async function main() {
   console.log();
   console.log("ether deposit: ",ethers.utils.parseUnits("200"));
   console.log("milk deposit: ",ethers.utils.parseUnits("50000"));
-  console.log(ethers.utils.parseUnits("200"));
   const router = new ethers.Contract(addresses.router, routerAbi, signer);
   const add_liquidity_tx = await router.addLiquidity(
     addresses.wETH,
-    "0x3129D36073374f9F0C4d4667CB34C5b71dE8FA72",
+    milkContract.address,
     ethers.utils.parseUnits("200"),
-    ethers.utils.parseUnits("50000"),
+    ethers.utils.parseUnits("60000000"),
     ethers.utils.parseUnits("1"),
     ethers.utils.parseUnits("1"),
     addresses.impersonate,
