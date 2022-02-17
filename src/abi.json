@@ -11,6 +11,7 @@
       "erc20":
       [
           "function symbol() view returns (string)",
+          "function name() external view returns (string memory)",
           "function approve(address to, uint256 tokenId) external",
 					"function balanceOf(address account) external view returns (uint256)"
       ],
