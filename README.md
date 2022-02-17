@@ -1,7 +1,7 @@
 # Listing Sniping Bot
-When new tokens gets listed on a **DEX**, bots are able to detect this and be one of the first to buy the token at a very low price. 
+When new tokens gets listed on a **DEX**, bots are able to detect this event and can use this to be one of the first to buy the newly listed token at a **very low price.**
 
-This repo explores this idea by showing an implementation of a bot snipes specific tokens as soon as they are listed. This bot works under the assumption that *the name of the token that we snipe is known before launch.*
+This repo explores this idea by showing an implementation of a bot snipes specific tokens as soon as they are listed. This bot works under the assumption that **the name of the token that we snipe is known before launch.**
 
 ## Technolody Stack & Tools
 - Javascript (bot script & testing)
