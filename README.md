@@ -19,18 +19,19 @@ cd Listing-Sniping-Bot
 npm install
 ```
 ### Setup & Config
-Create a `.env` config file in the project home with the following variables 
+This project uses [dotenv](https://github.com/motdotla/dotenv#readme) to handle all config variables.
+To set it up, create a `.env` file in the **project home directory** and edit it to include descriptions for the following variables 
 - `MNEMONIC` 12 word wallet mnemonic phrase
 - `NODE_URL` http url of the node we will connect to 
 - `ROUTER_ADDR` dex router address
 - `FACTORY_ADDR` dex factory address
 - `TOKEN_IN_ADDR` address of token we are sending to router (token we are selling e.g. weth/matic/dai)
-- `TOKEN_OUT_NAME` name of the token that we want to **snipe**
+- `TOKEN_OUT_NAME` **name of the token that we want to snipe**
 - `SELL_AMT` amount of token that we want to send to router 
 - `MIN_LIQUIDITY` the minimum amount of liquidity the pool needs for a trade to be executed
 - `IMPERSONATE` whale address used for testing to create liquidity pools
 
-an example of `.env` config file 
+an example of a `.env` config file 
 ```
 MNEMONIC=<12-work-mnemonic-here>
 NODE_URL=<node-provider-url-here>
