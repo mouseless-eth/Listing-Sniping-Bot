@@ -42,14 +42,14 @@ const MilkContract = new ethers.ContractFactory(abi, bytecode, signer);
 
 async function main() {
   // deploying TEST MILK
-  await createLoadingMsg("Deploying MILK Contract", "Deployed MILK Contract");
+  await createLoadingMsg("Deploying MILK Contract", "Deployed MILK Contract", 3000);
   const milkContract = await MilkContract.deploy(ethers.utils.parseUnits("60000000"));
   let deploy_receipt = await milkContract.deployTransaction.wait();
   console.log(`Deployed To: ${milkContract.address}`);
   console.log(`(tx:${deploy_receipt.transactionHash})\n\n`);
 
   // creating new pair
-  await createLoadingMsg("Creating Weth/Milk Trading Pair", "Created Weth/Milk Trading Pair");
+  await createLoadingMsg("Creating Weth/Milk Trading Pair", "Created Weth/Milk Trading Pair", 2500);
 	const factory = new ethers.Contract(addresses.factory, factoryAbi, signer);
 
   const make_pair_tx = await factory.createPair(addresses.weth, milkContract.address);
@@ -60,7 +60,7 @@ async function main() {
   
 
   // adding liquidity to new pair
-  await createLoadingMsg("Adding Initial Liquditiy To Weth/Milk Pool", "Added Initial Liquidity To Weth/Milk Pool");
+  await createLoadingMsg("Adding Initial Liquditiy To Weth/Milk Pool", "Added Initial Liquidity To Weth/Milk Pool", 6000);
 	const wEthContract = new ethers.Contract(addresses.weth, erc20Abi, signer);
   const approve_weth_tx = await wEthContract.approve(addresses.router, "115792089237316195423570985008687907853269984665640564039457584007913129639935");
   const approve_weth_promise = approve_weth_tx.wait();
@@ -100,7 +100,7 @@ async function main() {
 // @param startMsg the message to print whilst loading
 // @param endMsg the message to print once loading is done
 // @returns Promise stalls program for 4 seconds
-const createLoadingMsg = (startMsg, endMsg) => {
+const createLoadingMsg = (startMsg, endMsg, seconds) => {
   let loader = loadingAnimation(startMsg);
   return new Promise( resolve => {
     setTimeout(() => {
@@ -112,7 +112,7 @@ const createLoadingMsg = (startMsg, endMsg) => {
       console.log(endMsg);
       console.log("= ".repeat(Math.ceil(endMsg.length / 2) + 1));
       resolve();
-    }, 4000);
+    }, seconds);
   });
 };
 
