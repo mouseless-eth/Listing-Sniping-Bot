@@ -5,7 +5,7 @@ require('dotenv').config();
 // setting up .env variables
 const MNEMONIC = process.env.MNEMONIC;
 const NODE_URL = process.env.NODE_URL;
-const BUY_AMT = process.env.BUY_AMT;
+const SELL_AMT = process.env.SELL_AMT;
 const MIN_LIQUIDITY = process.env.MIN_LIQUIDITY;
 const TOKEN_OUT_NAME = process.env.TOKEN_OUT_NAME;
 
@@ -100,9 +100,9 @@ factory.on('PairCreated', async (token0, token1, pairAddress) => {
         console.log("\nSufficient Liquidity Has Been Added To Pool\n");
 
         // creating receive transaction
-        const amountIn = ethers.utils.parseUnits(BUY_AMT, 'ether');
+        const amountIn = ethers.utils.parseUnits(SELL_AMT, 'ether');
         const amounts = await router.getAmountsOut(amountIn, [tokenIn, tokenOut]);
-        const amountOutMin = amounts[1].sub(amounts[1].div(30)); // accept swap as long as change in amt received <30% 
+        const amountOutMin = amounts[1].sub(amounts[1].div(5)); // accept swap as long as change in amt received <5% 
         
         // approving the router to transfer our tokenIn.
         // this is normally done before running this bot to reduce latency but
