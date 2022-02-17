@@ -39,11 +39,11 @@ async function main() {
 
   console.log(`unlocked address has given receiver a total of ${fundAmount} ETH`);
   console.log("= = = = = = = = = =");
-  console.log(`${IMPERSONATE} old balance : ${senderOldBalance}`);
-  console.log(`${receiverAddr} old balance : ${receiverOldBalance}`);
+  console.log(`(unlocked) ${IMPERSONATE} old balance : ${senderOldBalance}`);
+  console.log(`(receiver) ${receiverAddr} old balance : ${receiverOldBalance}`);
   console.log()
-  console.log(`${IMPERSONATE} new balance : ${ethers.utils.formatEther(await wethContract.balanceOf(IMPERSONATE))}`);
-  console.log(`${receiverAddr} new balance : ${ethers.utils.formatEther(await wethContract.balanceOf(receiverAddr))}`);
+  console.log(`(unlocked)${IMPERSONATE} new balance : ${ethers.utils.formatEther(await wethContract.balanceOf(IMPERSONATE))}`);
+  console.log(`(receiver)${receiverAddr} new balance : ${ethers.utils.formatEther(await wethContract.balanceOf(receiverAddr))}`);
 };
 
 main();

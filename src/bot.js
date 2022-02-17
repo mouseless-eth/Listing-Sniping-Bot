@@ -6,6 +6,7 @@ require('dotenv').config();
 const MNEMONIC = process.env.MNEMONIC;
 const NODEURL = process.env.NODEURL;
 const BUYAMT = process.env.BUYAMT;
+const TOKENNAME = process.env.TOKENNAME;
 
 // setting up node provider and account wallet for signing
 const provider = new ethers.providers.JsonRpcProvider(NODEURL);
@@ -67,7 +68,7 @@ factory.on('PairCreated', async (token0, token1, pairAddress) => {
   const outTokenContract = new ethers.Contract(outTokenAddr, abi['erc20'], provider);
   let outTokenSymbol = await outTokenContract.symbol();
 
-  if(outTokenSymbol.toLowerCase() === 'milk') {
+  if(outTokenSymbol.toLowerCase() === TOKENNAME.toLowerCase()) {
     console.log("Found Milk Contract Addr... Now Waiting For Liquidity To Be Added"); 
     // renaming variables now that we confirm outToken is Milk 
     wethAddr = inTokenAddr;
