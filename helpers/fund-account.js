@@ -37,13 +37,13 @@ async function main() {
   let tx = await wethContract.transfer(receiverAddr, ethers.utils.parseUnits(fundAmount.toString()));
   tx.wait();
 
-  console.log(`${IMPERSONATE} (unlocked address) has given ${receiverAddr} a total of ${fundAmount} ETH`);
+  console.log(`unlocked address has given receiver a total of ${fundAmount} ETH`);
   console.log("= = = = = = = = = =");
   console.log(`${IMPERSONATE} old balance : ${senderOldBalance}`);
   console.log(`${receiverAddr} old balance : ${receiverOldBalance}`);
   console.log()
   console.log(`${IMPERSONATE} new balance : ${ethers.utils.formatEther(await wethContract.balanceOf(IMPERSONATE))}`);
-  console.log(`${receiverAddr} new balance : ${ethers.utils.formatEther(await wethContract.balanceOf(IMPERSONATE))}`);
+  console.log(`${receiverAddr} new balance : ${ethers.utils.formatEther(await wethContract.balanceOf(receiverAddr))}`);
 };
 
 main();
