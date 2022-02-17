@@ -15,19 +15,16 @@ git clone https://github.com/NME-eth/Listing-Sniping-Bot
 cd Listing-Sniping-Bot
 npm install
 ```
-Set up the `.env` config file with the following variables 
-- `MNEMONIC` 12 word wallet mnemonic
+Create a `[env](.env)` config file in the project home with the following variables 
+- `MNEMONIC` 12 word wallet mnemonic phrase
 - `NODE_URL` http url of the node to connect to 
-- `ROUTER_ADDR` 
-- `FACTORY_ADDR`
-- `TOKEN_IN_ADDR` address of token we are selling (sending to router)
+- `ROUTER_ADDR` Dex router address
+- `FACTORY_ADDR` Dex factory address
+- `TOKEN_IN_ADDR` address of token we are sending to router (token we are selling e.g. weth/matic/dai)
 - `TOKEN_OUT_NAME` name of the token that we want to snipe
 - `SELL_AMT` amount of eth/matic/dai/... that we want to sell so that we can buy the token we are sniping
 - `MIN_LIQUIDITY` the minimum amount of liquidity the pool needs for a trade to be executed
 - `IMPERSONATE` whale address used for testing to create liquidity pools
-
->it makes most sense to use a highly liquid token such as weth/matic/dai/... for the `TOKEN_IN_ADDR` so that we won't be hit as hard by slippage
->`MIN_LIQUIDITY` stops the bot from buying fake tokens with the same name as the token we are trying to snipe. Should be pretty high e.g. 200eth
 
 an example of `.env` config file 
 ```
@@ -41,6 +38,8 @@ BUY_AMT=10
 MIN_LIQUIDITY=100
 IMPERSONATE=<used-for-testing>
 ```
+>it makes most sense to use a highly liquid token such as weth/matic/dai/... for the `TOKEN_IN_ADDR` so that we won't be hit as hard by slippage
+>`MIN_LIQUIDITY` stops the bot from buying fake tokens with the same name as the token we are trying to snipe. Should be pretty high e.g. 200eth
 
 ## Testing
 The test will be made using a real life token launch example. The 
