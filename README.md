@@ -18,8 +18,8 @@ npm install
 Create a `[env](.env)` config file in the project home with the following variables 
 - `MNEMONIC` 12 word wallet mnemonic phrase
 - `NODE_URL` http url of the node to connect to 
-- `ROUTER_ADDR` Dex router address
-- `FACTORY_ADDR` Dex factory address
+- `ROUTER_ADDR` dex router address
+- `FACTORY_ADDR` dex factory address
 - `TOKEN_IN_ADDR` address of token we are sending to router (token we are selling e.g. weth/matic/dai)
 - `TOKEN_OUT_NAME` name of the token that we want to snipe
 - `SELL_AMT` amount of eth/matic/dai/... that we want to sell so that we can buy the token we are sniping
