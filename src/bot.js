@@ -79,7 +79,7 @@ factory.on('PairCreated', async (token0, token1, pairAddress) => {
     let wethIndex = (wethAddr.toLowerCase() < milkAddr.toLowerCase()) ? 0 : 1;
 
     // waiting for liquidity to be added to the new weth-milk pair
-    setInterval(async () => {
+    var timer = setInterval(async () => {
       const pairContract = new ethers.Contract(pairAddress, abi['pair'], provider);
       const rawReserves = await pairContract.getReserves();
       const wethReserves = ethers.utils.formatEther(ethers.BigNumber.from(rawReserves[wethIndex]));
@@ -88,6 +88,7 @@ factory.on('PairCreated', async (token0, token1, pairAddress) => {
       
       // liquidity has been added once the pairContract weth reserves >= 100weth
       if(wethReserves >= 100) {
+        clearInterval(timer);
         console.log("Liquidity Has Been Added To Pool");
 
         // creating buy transaction
@@ -125,7 +126,8 @@ factory.on('PairCreated', async (token0, token1, pairAddress) => {
           //}
         );
 
-        const receipt = await tx.wait(); 
+        const promise = tx.wait(); 
+        const receipt = await promise;
         console.log('Transaction receipt');
         console.log(receipt);
       } 
