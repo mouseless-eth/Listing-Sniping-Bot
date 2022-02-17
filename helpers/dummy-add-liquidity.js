@@ -18,7 +18,7 @@ const provider = new ethers.providers.JsonRpcProvider(NODEURL);
 // setting up the account we want to impersonate
 const signer = provider.getSigner(addresses.impersonate);
 
-
+// all contract abis
 const routerAbi = [
 	"function addLiquidity(address tokenA, address tokenB, uint amountADesired, uint amountBDesired, uint amountAMin, uint amountBMin, address to, uint deadline) external returns (uint amountA, uint amountB, uint liquidity)",
 ];
@@ -42,28 +42,33 @@ const MilkContract = new ethers.ContractFactory(abi, bytecode, signer);
 
 async function main() {
   // deploying TEST MILK
+  await createLoadingMsg("Deploying MILK Contract", "Deployed MILK Contract");
   const milkContract = await MilkContract.deploy(ethers.utils.parseUnits("60000000"));
-  console.log("milk deployed to ",milkContract.address);
+  let deploy_receipt = await milkContract.deployTransaction.wait();
+  console.log(`Deployed To: ${milkContract.address}`);
+  console.log(`(tx:${deploy_receipt.transactionHash})\n\n`);
 
   // creating new pair
+  await createLoadingMsg("Creating Weth/Milk Trading Pair", "Created Weth/Milk Trading Pair");
 	const factory = new ethers.Contract(addresses.factory, factoryAbi, signer);
 
   const make_pair_tx = await factory.createPair(addresses.weth, milkContract.address);
   const make_pair_promise = make_pair_tx.wait();
   const make_pair_receipt = await make_pair_promise;
-  console.log("new milk + weth pair created - tx:", make_pair_receipt.transactionHash);
+  console.log("Pair Address:", await factory.getPair(addresses.weth, milkContract.address));
+  console.log(`(tx:${make_pair_receipt.transactionHash})\n\n`);
+  
 
   // adding liquidity to new pair
+  await createLoadingMsg("Adding Initial Liquditiy To Weth/Milk Pool", "Added Initial Liquidity To Weth/Milk Pool");
 	const wEthContract = new ethers.Contract(addresses.weth, erc20Abi, signer);
   const approve_weth_tx = await wEthContract.approve(addresses.router, "115792089237316195423570985008687907853269984665640564039457584007913129639935");
   const approve_weth_promise = approve_weth_tx.wait();
   const approve_weth_receipt = await approve_weth_promise;
-  console.log("approved router to use weth - tx:", approve_weth_receipt.transactionHash);
 
   const approve_milk_tx = await milkContract.approve(addresses.router, "115792089237316195423570985008687907853269984665640564039457584007913129639935");
   const approve_milk_promise = approve_milk_tx.wait();
   const approve_milk_receipt = await approve_milk_promise;
-  console.log("approved router to use milk ", approve_milk_receipt.transactionHash);
 
   const router = new ethers.Contract(addresses.router, routerAbi, signer);
   const add_liquidity_tx = await router.addLiquidity(
@@ -86,10 +91,43 @@ async function main() {
   [token0Reserves, token1Reserves] = await pairContract.getReserves();
   [wethReserves, milkReserves] = (addresses.weth.toLowerCase() < milkContract.address.toLowerCase()) ? 
     [token0Reserves, token1Reserves] : [token1Reserves, token0Reserves] ; 
-  console.log("Added liquidity to WETH/MILK pair");
-  console.log("= = = = = = = = = = = = = = = = =");
-  console.log(`WETH - ${ethers.utils.formatUnits(wethReserves)}`);
-  console.log(`MILK - ${ethers.utils.formatUnits(milkReserves)}`);
+  console.log(`WETH Reserves: ${ethers.utils.formatUnits(wethReserves)}`);
+  console.log(`MILK Reserves: ${ethers.utils.formatUnits(milkReserves)}`);
+  console.log(`(tx:${add_liquidity_receipt.transactionHash})\n\n`);
+};
+
+// create the loading effect
+// @param startMsg the message to print whilst loading
+// @param endMsg the message to print once loading is done
+// @returns Promise stalls program for 4 seconds
+const createLoadingMsg = (startMsg, endMsg) => {
+  let loader = loadingAnimation(startMsg);
+  return new Promise( resolve => {
+    setTimeout(() => {
+      clearInterval(loader); 
+
+      // clearing loading line
+      process.stdout.clearLine();
+      process.stdout.cursorTo(0);
+      console.log(endMsg);
+      console.log("= ".repeat(Math.ceil(endMsg.length / 2) + 1));
+      resolve();
+    }, 4000);
+  });
+};
+
+// function to handle loading animation
+function loadingAnimation(
+    text = "",
+    chars = ["⠙", "⠘", "⠰", "⠴", "⠤", "⠦", "⠆", "⠃", "⠋", "⠉"],
+    delay = 100
+) {
+    let x = 0;
+
+    return setInterval(function() {
+        process.stdout.write("\r" + chars[x++] + " " + text);
+        x = x % chars.length;
+    }, delay);
 }
 
 main();
