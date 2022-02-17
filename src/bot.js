@@ -46,7 +46,7 @@ console.log('Waiting for new pairs');
 factory.on('PairCreated', async (token0, token1, pairAddress) => {
 
   // setting tokenIn's name
-  tokenInSymbol = await tokenInContract.symbol();
+  let tokenInSymbol = await tokenInContract.symbol();
 
   console.log(`
     New pair detected
