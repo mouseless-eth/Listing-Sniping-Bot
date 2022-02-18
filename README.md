@@ -7,7 +7,7 @@ This repo explores this idea by showing an implementation of a bot snipes **spec
 - Javascript (bot script & testing)
 - [Ethers.js](https://docs.ethers.io/v5/) (blockchain interaction)
 - [Alchemy](https://docs.alchemy.com/alchemy/) (node provider)
-- [Ganache-cli](https://github.com/trufflesuite/ganache-cli-archive) (personal local blockchain simulator)
+- [Ganache](https://github.com/trufflesuite/ganache-cli-archive) (cli based personal local blockchain simulator)
 - [Ethernal](https://doc.tryethernal.com/) (local blockchain explorer [optional])
 
 ## How To Run The Bot
@@ -56,9 +56,9 @@ node src/bot.js
 To create a **realistic test environment**, we will be using ganache to create a local blockchain state by **forking the mainnet** which will then allow us to simulate sniping the $MILK token. 
 
 ### Background Info & Testing Procedure
-$MILK is the native currency of the [Cool Cats](https://www.coolcatsnft.com/) NFT project. the token was set to launch on the **Polygon** Network on **QuickSwap** through a **Weth/Milk token pair**. 
+$MILK is the native currency of the [Cool Cats](https://www.coolcatsnft.com/) NFT project. the token was set to launch on the **Polygon** Network on **QuickSwap** through a **Weth/Milk token pair**. Our test will be conducted by executing the following steps:
 
-1. Use the ganache-cli tool to create a local blockchain by forking the polygon mainnet 
+1. Use the ganache to create a local blockchain by forking the polygon mainnet 
 2. Set up the `.env` file with all the appropriate variables for the bot to run on the new local blockchain
 3. Run the sniping bot
 4. Create a dummy erc20 token with the name/symbol MILK
@@ -67,4 +67,14 @@ $MILK is the native currency of the [Cool Cats](https://www.coolcatsnft.com/) NF
 6. If the bot works it should detect the pair added as well as the liquidty and should send a transaction to snipe $MILK
  
 ### Setting Up Ganache
-ganache is a 
+If you have not installed `ganache` install it
+```
+npm install ganache --global
+```
+
+Run ganache with the following parameters
+- `-f` to fork the polygon mainnet
+- `-u` to unlock a weth whale's address (we will use this account to create and add liquidity to the weth/milk pair)
+```
+ganache -f https://polygon-mainnet.g.alchemy.com/v2/<your-alchemy-api-key-here> -u 0x72A53cDBBcc1b9efa39c834A540550e23463AAcB
+```
