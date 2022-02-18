@@ -120,5 +120,14 @@ node testscripts/dummy-add-liquidity.js
 The `node src/bot.js` process should have detected the added liquidity and should have swapped WETH to MILK.
 
 ### Exploring TX On Local Network
-We can use [Ethernal](https://doc.tryethernal.com/) to set up a blockchain explorer for our ganache test network.
+We can use [Ethernal](https://doc.tryethernal.com/) to set up a blockchain explorer for our ganache test network. Ethernal is especially useful as a local blockchain explorer as there is no need to set up a truffle/hardhat project just to view transactions on a gui.
+
+Ethernal can be set up by following the steps outlined [here](https://doc.tryethernal.com/getting-started/quickstart). Once it is set up, you can import mainnet contracts and see all transaction/block details.
+
+Preview of Ethernal's interface
 ![Ethernal Preview](./EthernalScreenShot.png)
+
+## Contribution
+If you find any issues or ways to improve this project, create a pull request and it will be merged into the main branch if accepted.
+
+*This repo has been created for educational purposes and as a tool for myself and others to learn how to implement various web3 tools to conduct tasks such as writing/deploying/testing/interacting with smart contracts. **I do not endorse the usage of bots to gain an unfair advantage over regular onchain users.***
