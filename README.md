@@ -60,8 +60,7 @@ $MILK is the native currency of the [Cool Cats](https://www.coolcatsnft.com/) NF
 
 Because all of the launch details of MILK were made public before hand, it would have been very easy for an individual to set up a bot to snipe it as soon as it went live.
 
-Our local blockchain test can be broken down into the following parts:
----
+**Testing Procedure:**
 1. use the ganache-cli tool to create a local blockchain by forking the polygon mainnet 
 2. set up the `.env` file with all the appropriate variables for the bot to run on the new local blockchain
 3. run the sniping bot
