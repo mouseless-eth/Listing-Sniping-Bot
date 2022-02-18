@@ -133,6 +133,6 @@ Preview of Ethernal's interface
 ## Contribution
 If you find any issues or ways to improve this project, create a pull request and it will be merged into the main branch if accepted.
 
-credit to Julien at ETB as their repo [here](https://github.com/jklepatch/eattheblocks/tree/master/screencast/322-uniswap-trading-bot) helped build the core foundation of this project.
+Credits to Julien from ETB as their repo [here](https://github.com/jklepatch/eattheblocks/tree/master/screencast/322-uniswap-trading-bot) helped massively in builing this project.
 
 *This repo has been created for educational purposes and as a tool for myself and others to learn how to implement various web3 tools to conduct tasks such as writing/deploying/testing/interacting with smart contracts. **I do not endorse the usage of bots to gain an unfair advantage over regular onchain users.***
