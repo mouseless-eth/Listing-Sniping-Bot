@@ -60,14 +60,14 @@ $MILK is the native currency of the [Cool Cats](https://www.coolcatsnft.com/) NF
 
 Because all of the launch details of MILK were made public before hand, it would have been very easy for an individual to set up a bot to snipe it as soon as it went live.
 
-Testing Procedure:
+### Breakdown Of Testing Procedure
 1. use the ganache-cli tool to create a local blockchain by forking the polygon mainnet 
 2. set up the `.env` file with all the appropriate variables for the bot to run on the new local blockchain
 3. run the sniping bot
 4. create a dummy erc20 token with the name/symbol MILK
 4. create a new token pair on quickswap for WETH/MILK
 5. add liquidity to our WETH/MILK token pair
-6. if the bot works it should detect the pair added as well as the liquidty and should send a transaction to snipe milk
+6. if the bot works it should detect the pair added as well as the liquidty and should send a transaction to snipe $MILK
  
 ### Setting up ganache
 ganache is a 
