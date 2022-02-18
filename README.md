@@ -45,9 +45,9 @@ BUY_AMT=10 # swap 10weth for the token we want to snipe
 MIN_LIQUIDITY=100 # pool needs atleast 100 weth for bot to make trade
 IMPERSONATE=0xE78388b4CE79068e89Bf8aA7f218eF6b9AB0e9d0 # avax bridge 
 ```
->It makes most sense to use a highly liquid token such as weth/matic/dai/... for the `TOKEN_IN_ADDR` so that we won't be hit as hard by slippage
+>It makes most sense to use a highly liquid token such as weth/matic/dai/... for the value of `TOKEN_IN_ADDR` so that the bot won't be hit as hard by slippage when swapping
 
->`MIN_LIQUIDITY` stops the bot from buying fake tokens with the same name as the token we are trying to snipe. Should be pretty high e.g. 200eth
+>`MIN_LIQUIDITY` stops the bot from buying fake tokens with the same name as the token we are trying to snipe because the pair's pool reserves need to meet a certain threshold. Should be pretty high e.g. 200eth
 
 ### Running 
 Once the `.env` file is set up, the bot can be run by calling the following command from the project home directory
