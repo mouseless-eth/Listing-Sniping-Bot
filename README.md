@@ -1,5 +1,5 @@
 # Listing Sniping Bot
-When new tokens gets listed on a DEX, bots are able to detect the **contract event emmited** and can use this to their advantage by being one of the first to buy the newly listed token at a **very low price.**
+When new tokens gets listed on a DEX, bots are able to detect the **onPairCreated event emmited from the contract** when a new pair is created. They can then, use this to their advantage by being one of the first to buy the newly listed token at a **very low price.**
 
 This repo explores this idea by showing an implementation of a bot snipes **specific** tokens as soon as they are listed. This bot works under the assumption that **the name of the token to snipe is known before its launch.**
 
@@ -47,13 +47,13 @@ IMPERSONATE=0xE78388b4CE79068e89Bf8aA7f218eF6b9AB0e9d0 // avax bridge used for t
 >`MIN_LIQUIDITY` stops the bot from buying fake tokens with the same name as the token we are trying to snipe. Should be pretty high e.g. 200eth
 
 ### Running 
-Once the `.env` file is set up, the bot can be run by calling the following command from the project home directory.
+Once the `.env` file is set up, the bot can be run by calling the following command from the project home directory
 ```
 node src/bot.js
 ```
 
-## Testing
-The test will be made using a real life token launch example. The 
+## Testing The Bot On A Local Blockchain Instance
+The following outlines 
 
 ### Background 
 Milk is the native currency for the [Cool Cats](https://www.coolcatsnft.com/) NFT project, the token launched on the **Polygon** Network on **[QuickSwap](https://quickswap.exchange/#/)** through a **Weth/Milk token pair**.
