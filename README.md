@@ -81,7 +81,7 @@ ganache -f https://polygon-mainnet.g.alchemy.com/v2/<your-alchemy-api-key-here> 
 ```
 >If in the future the example whale account no longer holds weth, replace their address
 
->I reccomend using [alchemy](https://docs.alchemy.com/alchemy/) as the provider especially when forking mainnets for tests, due to their efficient caching system
+>I reccomend using [alchemy](https://docs.alchemy.com/alchemy/) as the provider especially when creating mainnet forks, due to their efficient caching system
 
 ### Setting Up The .env File
 Set up the `.env` file with the following variables for the test to work
