@@ -7,7 +7,7 @@ If there is enough public interest in the token during launch day, the bot has p
 
 ## Technolody Stack & Tools
 - Javascript (bot & testing scripts)
-- Node.js (js runtime envrionment for scripts)
+- [Node.js](https://nodejs.org/en/docs/guides/) (js runtime envrionment for scripts)
 - [Ethers.js](https://docs.ethers.io/v5/) (blockchain interaction)
 - [Ganache](https://github.com/trufflesuite/ganache-cli-archive) (cli based personal local blockchain simulator)
 - [Alchemy](https://docs.alchemy.com/alchemy/) (node provider)
@@ -132,5 +132,7 @@ Preview of Ethernal's interface
 
 ## Contribution
 If you find any issues or ways to improve this project, create a pull request and it will be merged into the main branch if accepted.
+
+credit to Julien at ETB as their repo [here](https://github.com/jklepatch/eattheblocks/tree/master/screencast/322-uniswap-trading-bot) helped build the core foundation of this project.
 
 *This repo has been created for educational purposes and as a tool for myself and others to learn how to implement various web3 tools to conduct tasks such as writing/deploying/testing/interacting with smart contracts. **I do not endorse the usage of bots to gain an unfair advantage over regular onchain users.***
