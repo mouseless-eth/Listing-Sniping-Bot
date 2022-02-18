@@ -121,4 +121,4 @@ The `node src/bot.js` process should have detected the added liquidity and shoul
 
 ### Exploring TX On Local Network
 We can use [Ethernal](https://doc.tryethernal.com/) to set up a blockchain explorer for our ganache test network.
-![Ethernal Preview](./Ethernal.png)
+![Ethernal Preview](./EthernalScreenShot.png)
