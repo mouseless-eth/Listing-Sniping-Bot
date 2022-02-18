@@ -55,12 +55,12 @@ node src/bot.js
 ## Testing On A Local Blockchain Instance 
 To create a **realistic test environment**, we will be using ganache to create a local blockchain state by **forking the mainnet** which will then allow us to simulate sniping the $MILK token. 
 
-### Background Info
+#### Background Info
 $MILK is the native currency of the [Cool Cats](https://www.coolcatsnft.com/) NFT project. the token was set to launch on the **Polygon** Network on **QuickSwap** through a **Weth/Milk token pair**. 
 
 Because all of the launch details of MILK were made public before hand, it would have been very easy for an individual to set up a bot to snipe it as soon as it went live.
 
-### Breakdown Of Testing Procedure
+#### Breakdown Of Testing Procedure
 1. use the ganache-cli tool to create a local blockchain by forking the polygon mainnet 
 2. set up the `.env` file with all the appropriate variables for the bot to run on the new local blockchain
 3. run the sniping bot
