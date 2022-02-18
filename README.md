@@ -1,5 +1,5 @@
 # Listing Sniping Bot
-When a new token gets listed on a DEX, bots are able to detect the **PairCreated event emitted from the DEX's factory contract.** This information can be used to their advantage by allowing the bot to be one of the first to buy the newly listed token at a **very low price.**
+When a new token gets listed on a DEX, bots are able to detect the **PairCreated event emitted from the DEX's factory contract.** This information can be used in the bot's favour by allowing them to be one of the first to buy the newly listed token at a **very low price.**
 
 This repo explores this idea by showing an implementation of a bot snipes **specific** tokens as soon as they are listed. This bot works under the assumption that **the name of the token to snipe is known before its launch.**
 
