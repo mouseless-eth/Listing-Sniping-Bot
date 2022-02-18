@@ -52,9 +52,20 @@ Once the `.env` file is set up, the bot can be run by calling the following comm
 node src/bot.js
 ```
 
-## Testing The Bot On A Local Blockchain Instance
-The following outlines 
+## Testing On A Local Blockchain Instance 
+To create a realistic test environment for this bot, we will be using ganache to create a local blockchain state by forking the mainnet which will then allow us to simulate sniping the $MILK token. 
 
-### Background 
-Milk is the native currency for the [Cool Cats](https://www.coolcatsnft.com/) NFT project, the token launched on the **Polygon** Network on **[QuickSwap](https://quickswap.exchange/#/)** through a **Weth/Milk token pair**.
+### Background Info
+$Milk is the native currency for the [Cool Cats](https://www.coolcatsnft.com/) NFT project, the token was set to launch on the **Polygon** Network on **[QuickSwap](https://quickswap.exchange/#/)** through a **Weth/Milk token pair**. Because all of the launch details of MILK were made public before hand, it would have been very easy to set up a bot to snipe it as soon as it went live.
 
+Our local blockchain test can be broken down into the following parts:
+1. use the ganache-cli tool to create a local blockchain by forking the polygon mainnet 
+2. set up the `.env` file with all the appropriate variables for the bot to run on the new local blockchain
+3. run the sniping bot
+4. create a dummy erc20 token with the name/symbol MILK
+4. create a new token pair on quickswap for WETH/MILK
+5. add liquidity to our WETH/MILK token pair
+6. if the bot works it should detect the pair added as well as the liquidty and should send a transaction to snipe milk
+ 
+### Setting up ganache
+ganache is a 
