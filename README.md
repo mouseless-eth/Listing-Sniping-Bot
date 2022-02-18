@@ -79,21 +79,20 @@ Open a terminal and run `ganache` with the following parameters
 ganache -f https://polygon-mainnet.g.alchemy.com/v2/<your-alchemy-api-key-here> \
         -u 0x72A53cDBBcc1b9efa39c834A540550e23463AAcB
 ```
->If in the future the whale account no longer holds weth, replace their address with another weth whale's address
+>If in the future the example whale account no longer holds weth, replace their address
 
->I reccomend using [alchemy](https://docs.alchemy.com/alchemy/) as your node provider when forking mainnets because of their efficient caching system
+>I reccomend using [alchemy](https://docs.alchemy.com/alchemy/) as the provider especially when forking mainnets for tests, due to their efficient caching system
 
 ### Setting Up The .env File
 Set up the `.env` file with the following variables for the test to work
 ```
 MNEMONIC=<12-work-mnemonic-here>
-NODE_URL=http://127.0.0.1:8545 # default ganache url, change it to match your ganache instance if needed
+NODE_URL=http://127.0.0.1:8545 # ganache rpc url
 ROUTER_ADDR=0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff # quickswap router
 FACTORY_ADDR=0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32 # uni factory
 TOKEN_IN_ADDR=0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619 # weth addr
 TOKEN_OUT_NAME=MILK
-BUY_AMT=10 # swap 10weth for the token we want to snipe
-MIN_LIQUIDITY=100 # pool needs atleast 100 weth for bot to make trade
-IMPERSONATE=0x72A53cDBBcc1b9efa39c834A540550e23463AAcB # the whale account that we unlocked on ganache
+BUY_AMT=10 
+MIN_LIQUIDITY=100 
+IMPERSONATE=0x72A53cDBBcc1b9efa39c834A540550e23463AAcB # unlocked whale acc
 ```
->make sure that the IMPEROSONATE address is unlocked on ganache
