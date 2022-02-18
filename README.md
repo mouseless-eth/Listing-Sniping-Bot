@@ -3,7 +3,7 @@ When a new token gets listed on a DEX, bots are able to detect the **PairCreated
 
 This repo explores this idea by showing an implementation of a bot that snipes **specific** tokens as soon as they are listed. This bot works under the assumption that **the name of the token to snipe is known before launch.** 
 
-If there is enough public interest in the token during launch day, the bot has potential to be profitable.
+If there is enough public interest in the token during launch day, the bot has the potential to be profitable.
 
 ## Technolody Stack & Tools
 - Javascript (bot & testing scripts)
