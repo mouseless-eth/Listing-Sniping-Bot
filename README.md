@@ -34,13 +34,13 @@ an example of a `.env` config file
 ```
 MNEMONIC=<12-work-mnemonic-here>
 NODE_URL=<node-provider-url-here>
-ROUTER_ADDR=0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D // uni router
-FACTORY_ADDR=0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f // uni factory
-TOKEN_IN_ADDR=0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 // weth addr
+ROUTER_ADDR=0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D # uni router
+FACTORY_ADDR=0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f # uni factory
+TOKEN_IN_ADDR=0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 # weth addr
 TOKEN_OUT_NAME=<name-of-token-to-snipe>
-BUY_AMT=10 // swap 10weth for the token we want to snipe
-MIN_LIQUIDITY=100 // pool needs atleast 100 weth for bot to make trade
-IMPERSONATE=0xE78388b4CE79068e89Bf8aA7f218eF6b9AB0e9d0 // avax bridge used for testing purposes to send weth
+BUY_AMT=10 # swap 10weth for the token we want to snipe
+MIN_LIQUIDITY=100 # pool needs atleast 100 weth for bot to make trade
+IMPERSONATE=0xE78388b4CE79068e89Bf8aA7f218eF6b9AB0e9d0 # avax bridge used for testing purposes to send weth
 ```
 >it makes most sense to use a highly liquid token such as weth/matic/dai/... for the `TOKEN_IN_ADDR` so that we won't be hit as hard by slippage
 
@@ -72,9 +72,28 @@ If you have not installed `ganache` install it
 npm install ganache --global
 ```
 
-Run ganache with the following parameters
-- `-f` to fork the polygon mainnet
+Open a terminal and run `ganache` with the following parameters
+- `-f` to fork the polygon mainnet. 
 - `-u` to unlock a weth whale's address (we will use this account to create and add liquidity to the weth/milk pair)
 ```
-ganache -f https://polygon-mainnet.g.alchemy.com/v2/<your-alchemy-api-key-here> -u 0x72A53cDBBcc1b9efa39c834A540550e23463AAcB
+ganache -f https://polygon-mainnet.g.alchemy.com/v2/<your-alchemy-api-key-here> \
+        -u 0x72A53cDBBcc1b9efa39c834A540550e23463AAcB
 ```
+>If in the future the whale account no longer holds weth, replace their address with another weth whale's address
+
+>I reccomend using [alchemy](https://docs.alchemy.com/alchemy/) as your node provider when forking mainnets because of their efficient caching system
+
+### Setting Up The .env File
+Set up the `.env` file with the following variables for the test to work
+```
+MNEMONIC=<12-work-mnemonic-here>
+NODE_URL=http://127.0.0.1:8545 # default ganache url, change it to match your ganache instance if needed
+ROUTER_ADDR=0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff # quickswap router
+FACTORY_ADDR=0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32 # uni factory
+TOKEN_IN_ADDR=0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619 # weth addr
+TOKEN_OUT_NAME=MILK
+BUY_AMT=10 # swap 10weth for the token we want to snipe
+MIN_LIQUIDITY=100 # pool needs atleast 100 weth for bot to make trade
+IMPERSONATE=0x72A53cDBBcc1b9efa39c834A540550e23463AAcB # the whale account that we unlocked on ganache
+```
+>make sure that the IMPEROSONATE address is unlocked on ganache
