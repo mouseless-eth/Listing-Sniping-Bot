@@ -3,7 +3,7 @@ When a new token gets listed on a DEX, bots are able to detect the **PairCreated
 
 This repo explores this idea by showing an implementation of a bot that snipes **specific** tokens as soon as they are listed. This bot works under the assumption that **the name of the token to snipe is known before launch.** 
 
-If there is enough public interest in the token during launch day, the bot has the potential to be profitable.
+If there is enough public interest in the token during launch day, the bot has potential to be profitable.
 
 ## Technolody Stack & Tools
 - Javascript (bot & testing scripts)
@@ -22,7 +22,7 @@ cd Listing-Sniping-Bot
 npm install
 ```
 ### Setup & Config
-This project uses [dotenv](https://github.com/motdotla/dotenv#readme) to handle all config variables. To set it up, create a `.env` file in the **project home directory** and edit it to include descriptions for the following variables:
+This project uses [dotenv](https://github.com/motdotla/dotenv#readme) to handle all config variables. To set it up, create a `.env` file in the **project home directory** and edit it to include the following variables:
 - `MNEMONIC` 12 word mnemonic phrase for a HDWallet
 - `NODE_URL` **http url** of the node that the bot will connect to
 - `ROUTER_ADDR` dex router address
