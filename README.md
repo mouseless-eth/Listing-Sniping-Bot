@@ -6,10 +6,11 @@ This repo explores this idea by showing an implementation of a bot that snipes *
 If there is enough public interest in the token during launch day, the bot has potential to be profitable.
 
 ## Technolody Stack & Tools
-- Javascript (bot script & testing)
+- Javascript (bot & testing scripts)
+- Node.js (js runtime envrionment for scripts)
 - [Ethers.js](https://docs.ethers.io/v5/) (blockchain interaction)
-- [Alchemy](https://docs.alchemy.com/alchemy/) (node provider)
 - [Ganache](https://github.com/trufflesuite/ganache-cli-archive) (cli based personal local blockchain simulator)
+- [Alchemy](https://docs.alchemy.com/alchemy/) (node provider)
 - [Ethernal](https://doc.tryethernal.com/) (local blockchain explorer [optional])
 
 ## How To Run The Bot
