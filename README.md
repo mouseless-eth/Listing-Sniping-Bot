@@ -42,7 +42,7 @@ BUY_AMT=10 # swap 10weth for the token we want to snipe
 MIN_LIQUIDITY=100 # pool needs atleast 100 weth for bot to make trade
 IMPERSONATE=0xE78388b4CE79068e89Bf8aA7f218eF6b9AB0e9d0 # avax bridge used for testing purposes to send weth
 ```
->it makes most sense to use a highly liquid token such as weth/matic/dai/... for the `TOKEN_IN_ADDR` so that we won't be hit as hard by slippage
+>It makes most sense to use a highly liquid token such as weth/matic/dai/... for the `TOKEN_IN_ADDR` so that we won't be hit as hard by slippage
 
 >`MIN_LIQUIDITY` stops the bot from buying fake tokens with the same name as the token we are trying to snipe. Should be pretty high e.g. 200eth
 
@@ -52,11 +52,11 @@ Once the `.env` file is set up, the bot can be run by calling the following comm
 node src/bot.js
 ```
 
-## Testing On A Local Blockchain Instance 
+# Testing On A Local Blockchain Instance 
 To create a **realistic test environment**, we will be using ganache to create a local blockchain state by **forking the mainnet** which will then allow us to simulate sniping the $MILK token. 
 
 ### Background Info & Testing Procedure
-$MILK is the native currency of the [Cool Cats](https://www.coolcatsnft.com/) NFT project. the token was set to launch on the **Polygon** Network on **QuickSwap** through a **Weth/Milk token pair**. Our test will be conducted by executing the following steps:
+$MILK is the native currency of the [Cool Cats](https://www.coolcatsnft.com/) NFT project. the token was announced to launch on the **Polygon** Network on **QuickSwap** through a **Weth/Milk token pair**. Our test will be conducted by executing the following steps:
 
 1. Use the ganache to create a local blockchain by forking the polygon mainnet 
 2. Set up the `.env` file with all the appropriate variables for the bot to run on the new local blockchain
@@ -96,3 +96,29 @@ BUY_AMT=10
 MIN_LIQUIDITY=100 
 IMPERSONATE=0x72A53cDBBcc1b9efa39c834A540550e23463AAcB # unlocked whale acc
 ```
+
+### Running The Bot
+Open a new terminal instance and run the bot. The bot script should be **called from the project home directory**.
+```
+node src/bot.js
+```
+>Take note of the signer address on your terminal output
+
+#### (optional) adding funds 
+If your signer address does not have 10 WETH at the time of fork, we can transfer 100 WETH to the signer from the unlocked weth whale account. To do so, run the following.
+```
+node testscripts/fund-account.js <your-signer-address-here> 100
+```
+>This script should be called from the project home directory
+
+### Simulate $MILK Listing
+Open a new terminal and run the following script. This next script will use the unlocked whale account to deploy a dummy $MILK token. It will then create a MILK/WETH pair through the quickswap factory. Then it will provide liquidty to the pair using 200 Weth and 60M Milk.
+```
+node testscripts/dummy-add-liquidity.js 
+```
+
+The `node src/bot.js` process should have detected the added liquidity and should have swapped WETH to MILK.
+
+### Exploring TX On Local Network
+We can use [Ethernal](https://doc.tryethernal.com/) to set up a blockchain explorer for our ganache test network.
+![Ethernal Preview](./Ethernal.png)
