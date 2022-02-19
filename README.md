@@ -41,7 +41,7 @@ ROUTER_ADDR=0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D # uni router
 FACTORY_ADDR=0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f # uni factory
 TOKEN_IN_ADDR=0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 # weth addr
 TOKEN_OUT_NAME=<name-of-token-to-snipe>
-BUY_AMT=10 # swap 10weth for the token we want to snipe
+SELL_AMT=10 # swap 10weth for the token we want to snipe
 MIN_LIQUIDITY=100 # pool needs atleast 100 weth for bot to make trade
 IMPERSONATE=0xE78388b4CE79068e89Bf8aA7f218eF6b9AB0e9d0 # avax bridge 
 ```
@@ -59,7 +59,7 @@ node src/bot.js
 To create a **realistic test environment**, we will be using ganache to create a local blockchain state by **forking the mainnet** which will then allow us to simulate sniping the $MILK token. 
 
 ### Background Info & Testing Procedure
-$MILK is the native currency of the [Cool Cats](https://www.coolcatsnft.com/) NFT project. the token was announced to launch on the **Polygon** Network on **QuickSwap** through a **Weth/Milk token pair**. Our test will be conducted by executing the following steps:
+$MILK is the native currency of the [Cool Cats](https://www.coolcatsnft.com/) NFT project. The token was announced to launch on the **Polygon** Network on **QuickSwap** through a **Weth/Milk token pair**. Our test will be conducted by executing the following steps:
 
 1. Use the ganache to create a local blockchain by forking the polygon mainnet 
 2. Set up the `.env` file with all the appropriate variables for the bot to run on the new local blockchain
@@ -123,7 +123,7 @@ node testscripts/dummy-add-liquidity.js
 The `node src/bot.js` process should have detected the added liquidity and should have swapped WETH to MILK.
 
 ### Exploring TX On Local Network
-We can use [Ethernal](https://doc.tryethernal.com/) to set up a blockchain explorer for our ganache test network. Ethernal is especially useful as a local blockchain explorer as there is no need to set up a truffle/hardhat project just to view transactions on a gui.
+We can use [Ethernal](https://doc.tryethernal.com/) to set up a blockchain explorer for our ganache test network. Ethernal is especially useful as a local blockchain explorer as there is no need to set up a truffle/hardhat project just to view transactional data.
 
 Ethernal can be set up by following the steps outlined [here](https://doc.tryethernal.com/getting-started/quickstart). Once it is set up, you can import mainnet contracts and see all transaction/block details.
 
