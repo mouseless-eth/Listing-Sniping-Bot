@@ -5,7 +5,7 @@ This repo explores this idea by showing an implementation of a bot that snipes *
 
 If there is enough public interest in the token during launch day, the bot has potential to be profitable.
 
-![Bot Preview](preview.mp4)
+![Bot Preview](https://twitter.com/i/status/1494781960350314507)
 
 ## Technolody Stack & Tools
 - Javascript (bot & testing scripts)
