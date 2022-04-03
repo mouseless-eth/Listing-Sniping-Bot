@@ -7,6 +7,11 @@ If there is enough public interest in the token during launch day, the bot has p
 
 [Bot Preview](https://twitter.com/i/status/1494781960350314507)
 
+## Notice
+**This is an outdated version**. The new version makes use of :
+- [1Inch's Router](https://docs.1inch.io/docs/aggregation-protocol/guide/quick-start) to find the most efficient trade route 
+- [Flashbots](https://www.npmjs.com/package/@flashbots/ethers-provider-bundle) to avoid the transaction getting sandwhiched attacked due to high slippage
+
 ## Technolody Stack & Tools
 - Javascript (bot & testing scripts)
 - [Node.js](https://nodejs.org/en/docs/guides/) (js runtime envrionment for scripts)
