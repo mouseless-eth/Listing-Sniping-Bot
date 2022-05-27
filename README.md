@@ -7,7 +7,7 @@ If there is enough public interest in the token during launch day, the bot has p
 
 [Bot Preview](https://twitter.com/i/status/1494781960350314507)
 
-## Notice
+## :warning: Notice :warning:
 **This is an outdated version**. The new version makes use of :
 - [Rust](https://www.rust-lang.org/) for the blazingly fast speeeeeeed 
 - [Flashbots](https://www.npmjs.com/package/@flashbots/ethers-provider-bundle) to avoid the transaction getting sandwhiched attacked due to high slippage
