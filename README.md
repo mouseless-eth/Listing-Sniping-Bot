@@ -9,10 +9,11 @@ If there is enough public interest in the token during launch day, the bot has p
 
 ## Notice
 **This is an outdated version**. The new version makes use of :
-- [1Inch's Router](https://docs.1inch.io/docs/aggregation-protocol/guide/quick-start) to find the most efficient trade route 
+- [Rust](https://www.rust-lang.org/) for the blazingly fast speeeeeeed 
 - [Flashbots](https://www.npmjs.com/package/@flashbots/ethers-provider-bundle) to avoid the transaction getting sandwhiched attacked due to high slippage
+- [Foundry](https://book.getfoundry.sh/forge/index.html) for testing
 
-Will re-format this repo to use foundry so that I can write test in solidity. THIS REPO IS OUTDATED
+Still deciding if I will open source the new version...
 
 ## Technolody Stack & Tools
 - Javascript (bot & testing scripts)
