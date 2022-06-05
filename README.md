@@ -13,8 +13,6 @@ If there is enough public interest in the token during launch day, the bot has p
 - [Flashbots](https://www.npmjs.com/package/@flashbots/ethers-provider-bundle) to avoid the transaction getting sandwhiched attacked due to high slippage
 - [Foundry](https://book.getfoundry.sh/forge/index.html) for testing
 
-Still deciding if I will open source the new version...
-
 ## Technolody Stack & Tools
 - Javascript (bot & testing scripts)
 - [Node.js](https://nodejs.org/en/docs/guides/) (js runtime envrionment for scripts)
