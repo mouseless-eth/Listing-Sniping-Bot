@@ -10,8 +10,7 @@ If there is enough public interest in the token during launch day, the bot has p
 ## :warning: Notice :warning:
 **This is an outdated version**. The new version makes use of :
 - [Rust](https://www.rust-lang.org/) for the blazingly fast speeeeeeed 
-- [Flashbots](https://www.npmjs.com/package/@flashbots/ethers-provider-bundle) to avoid the transaction getting sandwhiched attacked due to high slippage
-- [Foundry](https://book.getfoundry.sh/forge/index.html) for testing
+- [Flashbots](https://www.npmjs.com/package/@flashbots/ethers-provider-bundle) to avoid the transaction getting sandwhiched attacked due to high slippage (only on ethereum)
 
 ## Technolody Stack & Tools
 - Javascript (bot & testing scripts)
